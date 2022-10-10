@@ -42,3 +42,9 @@ class TaskController {
     await database.close();
   }
 }
+  Future<List<Map>> readFiltro(filtro) async{
+    var database = await getDatabase();
+    List<Map> tasks = await database.rawQuery('SELECT * FROM Task WHERE {}'.format(filtro));
+    await database.close();
+    return tasks;
+  }

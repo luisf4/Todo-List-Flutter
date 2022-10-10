@@ -24,7 +24,7 @@ class _ListPageState extends State<ListPage> {
 
   void updateState() {
     setState(() {
-      tasks = taskController.read();
+      tasks = taskController.readFiltro(_searchController);
     });
   }
 
@@ -60,9 +60,7 @@ TextEditingController _searchController = TextEditingController();
           ),
            ),
           Expanded(
-            child: FutureBuilder<List<Map<dynamic, dynamic>>>(
-                future: tasks,
-                builder: (context, snapshot) {
+            child: FutureBuilder<List<Map<dynamic, dynamic>>>(future:tasks, builder:(context, snapshot){
                   if (!snapshot.hasData)
                     return Center(
                       child: CircularProgressIndicator(),
